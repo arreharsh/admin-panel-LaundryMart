@@ -9,7 +9,7 @@ const AdminChat = () => {
   const [pendingUsers, setPendingUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [adminId] = useState('admin123');
+  const [adminId] = useState('harsh');
   const [text, setText] = useState('');
 
   // 🟢 Listen for new chat requests from users
