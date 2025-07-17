@@ -22,7 +22,7 @@ const AdminChat = () => {
     });
 
     return () => socket.off('adminNotification');
-  }, []);
+  }, [pendingUsers]);
 
   // 🟢 Listen for chat messages
   useEffect(() => {
@@ -36,7 +36,7 @@ const AdminChat = () => {
     });
 
     return () => socket.off('receiveMessage');
-  }, [selectedUser]);
+  }, [selectedUser, adminId]);
 
   // 🔁 Auto scroll to bottom on new message
   useEffect(() => {
