@@ -58,6 +58,7 @@ const AdminChat = () => {
   const selectUser = (userId) => {
     setSelectedUser(userId);
     setMessages([]); // Optional: clear previous messages
+    socket.emit('adminConnectUser', { userId });
   };
 
   return (
