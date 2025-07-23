@@ -9,13 +9,12 @@ const AdminChat = () => {
   const [pendingUsers, setPendingUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [adminId] = useState('harsh');
+  const [adminId] = useState('admin123'); // Can be dynamic later
   const [text, setText] = useState('');
 
-  // 🟢 Listen for new chat requests from users
+  // 🔔 Listen for new user chat requests
   useEffect(() => {
     socket.on('adminNotification', ({ userId }) => {
-      console.log('📥 New chat request from:', userId);
       if (!pendingUsers.includes(userId)) {
         setPendingUsers((prev) => [...prev, userId]);
       }
@@ -24,7 +23,7 @@ const AdminChat = () => {
     return () => socket.off('adminNotification');
   }, [pendingUsers]);
 
-  // 🟢 Listen for chat messages
+  // 💬 Listen for messages from user
   useEffect(() => {
     socket.on('receiveMessage', (msg) => {
       if (
@@ -38,7 +37,7 @@ const AdminChat = () => {
     return () => socket.off('receiveMessage');
   }, [selectedUser, adminId]);
 
-  // 🔁 Auto scroll to bottom on new message
+  // 🔁 Auto scroll
   useEffect(() => {
     const chatBox = document.querySelector('.chat-scroll');
     if (chatBox) chatBox.scrollTop = chatBox.scrollHeight;
@@ -57,23 +56,26 @@ const AdminChat = () => {
 
   const selectUser = (userId) => {
     setSelectedUser(userId);
-    setMessages([]); // Optional: clear previous messages
+    setMessages([]); // reset chat
     socket.emit('adminConnectUser', { userId });
   };
 
   return (
     <div className="flex h-screen">
-      <div></div>
       {/* Sidebar */}
       <div className="w-1/4 bg-gray-100 p-4 border-r">
         <h2 className="text-lg font-bold mb-4">👥 Pending Users</h2>
-        {pendingUsers.length === 0 && <p className="text-gray-500">No new requests.</p>}
+        {pendingUsers.length === 0 && (
+          <p className="text-gray-500">No new requests.</p>
+        )}
         {pendingUsers.map((user, index) => (
           <div
             key={index}
             onClick={() => selectUser(user)}
             className={`p-2 mb-2 rounded cursor-pointer ${
-              user === selectedUser ? 'bg-blue-200' : 'bg-white hover:bg-blue-50'
+              user === selectedUser
+                ? 'bg-blue-200'
+                : 'bg-white hover:bg-blue-50'
             }`}
           >
             {user}
@@ -105,7 +107,7 @@ const AdminChat = () => {
           )}
         </div>
 
-        {/* Input Box */}
+        {/* Input */}
         {selectedUser && (
           <div className="p-4 border-t flex bg-white">
             <input
