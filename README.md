@@ -46,30 +46,30 @@ npm install
 
 ### 📩 Customer Support Chat
 
-Real-time chat with users
+- Real-time chat with users
 
-Powered by Socket.io
+- Powered by Socket.io
 
-Used for order support and queries
+- Used for order support and queries
 
 ### 🔗 API Integration
-Admin APIs
+- Admin APIs
 
-POST /api/admin/login
+`POST /api/admin/login`
 
-GET /api/admin/bookings
+`GET /api/admin/bookings`
 
-PATCH /api/admin/booking/:id
+`PATCH /api/admin/booking/:id`
 
 ### 🔌 Socket.io Events
 
-connection
+- connection
 
-join_room
+- join_room
 
-send_message
+- send_message
 
-receive_message
+- receive_message
 
 ### 🔐 Security
 
@@ -90,4 +90,5 @@ This admin panel is part of the Laundry Mart system and helps admins:
 - Track customer orders
 
 - Provide instant support via live chat
+
 
