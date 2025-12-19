@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard'; // empty for now
-import PrivateRoute from './PrivateRoute'; // empty for now
+import Dashboard from './pages/Dashboard'; 
+import PrivateRoute from './PrivateRoute'; 
 import AdminChat from './pages/AdminChat';
 
 
